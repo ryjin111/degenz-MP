@@ -22,9 +22,9 @@ export const NFT_CONTRACTS: NftContract[] = [
   {
     address: "0x794545BD165986a38Dbf36086d8eDC1063f99Ff4",
     chain: degenz,
-    title: "Degenz",
+    title: "DegenZ",
     thumbnailUrl:
-      "ipfs://bafybeihtvq3xtga3vvxlihv34jc2zuezxzlupesejmpfolsc4n44svw6sy/512.png",
+      "https://i.ibb.co/7rhj2ct/512.png",
     type: "ERC721",
   },
 
