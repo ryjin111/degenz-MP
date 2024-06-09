@@ -39,7 +39,7 @@ export function Navbar() {
             fontWeight="extrabold"
           >
             {/* Replace this with your own branding */}
-            IS THIS A MARKETPLACE?
+            CAVERN
           </Heading>
         </Box>
         <Box>
