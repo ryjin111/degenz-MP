@@ -30,7 +30,7 @@ type Props = {
   account: Account;
 };
 
-export function ProfileSection(props: Props) {
+export function Home(props: Props) {
   const { account } = props;
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [selectedCollection, setSelectedCollection] = useState<NftContract>(

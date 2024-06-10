@@ -15,7 +15,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function Home() {
+export default function ProfileMenu() {
   return (
     <Flex>
       <Box mt="24px" m="auto">
