@@ -15,7 +15,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function ProfileSection() {
+export default function Home() {
   return (
     <Flex>
       <Box mt="24px" m="auto">
@@ -23,7 +23,7 @@ export default function ProfileSection() {
           {/* Delete this <Card /> in your own app */}
           <Card bg="black" border="1px">
             <CardHeader>
-              <Heading size="md"><center>yeah feel free to use it</center></Heading>
+              <Heading size="md"><center>Buy and Sell will be ready soon please go to profile to see the your minted NFTs</center></Heading>
             </CardHeader>
 
             
@@ -31,14 +31,14 @@ export default function ProfileSection() {
           <Heading ml="20px" mt="40px">
           <center> Collections</center>
           </Heading>
-          <Flex
+         <Flex
             direction="row"
             wrap="wrap"
             mt="20px"
             gap="5"
             justifyContent="space-evenly"
           >
-            {NFT_CONTRACTS.map((item) => (
+        {/*    {NFT_CONTRACTS.map((item) => (
               <Link
                 _hover={{ textDecoration: "none" }}
                 w={300}
@@ -51,7 +51,7 @@ export default function ProfileSection() {
                   {item.title}
                 </Text>
               </Link>
-            ))}
+            ))} */}
           </Flex>
         </Flex>
       </Box>
