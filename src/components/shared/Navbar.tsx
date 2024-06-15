@@ -27,10 +27,12 @@ import {
   useDisconnect,
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
+import { SideMenu } from "./SideMenu";
 
 export function Navbar() {
   const account = useActiveAccount();
   const wallet = useActiveWallet();
+  const { colorMode } = useColorMode();
   return (
     <Box py="30px" px={{ base: "20px", lg: "50px" }}>
       <Flex direction="row" justifyContent="space-between">
@@ -39,21 +41,27 @@ export function Navbar() {
             as={Link}
             href="/"
             _hover={{ textDecoration: "none" }}
-            bgGradient="linear(to-l, #ffffff, #ffffff)"
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
             bgClip="text"
             fontWeight="extrabold"
           >
             {/* Replace this with your own branding */}
-            CAVERN
+            THIRDMART
           </Heading>
         </Box>
-        <Box>
+        <Box display={{ lg: "block", base: "none" }}>
+          <ToggleThemeButton />
           {account && wallet ? (
             <ProfileButton address={account.address} wallet={wallet} />
           ) : (
-            <ConnectButton client={client} />
+            <ConnectButton
+              client={client}
+              theme={colorMode}
+              connectButton={{ style: { height: "56px" } }}
+            />
           )}
         </Box>
+        <SideMenu />
       </Flex>
     </Box>
   );
@@ -67,6 +75,9 @@ function ProfileButton({
   wallet: Wallet;
 }) {
   const { disconnect } = useDisconnect();
+  const { data: ensName } = useGetENSName({ address });
+  const { data: ensAvatar } = useGetENSAvatar({ ensName });
+  const { colorMode } = useColorMode();
   return (
     <Menu>
       <MenuButton as={Button} height="56px">
@@ -75,7 +86,7 @@ function ProfileButton({
             <FiUser size={30} />
           </Box>
           <Image
-            src={blo(address as `0x${string}`)}
+            src={ensAvatar ?? blo(address as `0x${string}`)}
             height="40px"
             rounded="8px"
           />
@@ -84,11 +95,11 @@ function ProfileButton({
       <MenuList>
         <MenuItem display="flex">
           <Box mx="auto">
-            <ConnectButton client={client} />
+            <ConnectButton client={client} theme={colorMode} />
           </Box>
         </MenuItem>
         <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none" }}>
-          Profile
+          Profile {ensName ? `(${ensName})` : ""}
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -99,5 +110,14 @@ function ProfileButton({
         </MenuItem>
       </MenuList>
     </Menu>
+  );
+}
+
+function ToggleThemeButton() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Button height="56px" w="56px" onClick={toggleColorMode} mr="10px">
+      {colorMode === "light" ? <FaRegMoon /> : <IoSunny />}
+    </Button>
   );
 }
