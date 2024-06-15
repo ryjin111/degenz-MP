@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <ChakraProvider theme={chakraTheme}>
-      <ColorModeScript initialColorMode={chakraThemeConfig.initialColorMode} />
+      <ColorModeScript initialColorMode={chakraThemeConfig.} />
       <QueryClientProvider client={queryClient}>
         <ThirdwebProvider>{children}</ThirdwebProvider>
       </QueryClientProvider>
