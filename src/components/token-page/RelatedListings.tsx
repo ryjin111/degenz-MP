@@ -58,7 +58,7 @@ export default function RelatedListings({
               <Flex direction="column">
                 <MediaRenderer
                   client={client}
-                  src={item.asset.metadata.image}
+                  src={item.asset.metadata.image_data}
                 />
                 <Text>{item.asset.metadata?.name ?? "Unknown item"}</Text>
                 <Text>Price</Text>

@@ -21,24 +21,39 @@ export default function Home() {
       <Box mt="24px" m="auto">
         <Flex direction="column" gap="4">
           {/* Delete this <Card /> in your own app */}
-          <Card bg="black" border="1px">
+          <Card border="1px" maxW="90vw" mx="auto">
             <CardHeader>
-              <Heading size="md"><center>Buy and Sell will be ready soon please go to profile to see the your minted NFTs</center></Heading>
+              <Heading size="md">Marketplace Template v2</Heading>
             </CardHeader>
 
-            
+            <CardBody>
+              <Stack divider={<StackDivider />} spacing="4">
+                {_latestUpdates.map((item) => (
+                  <Box key={item.title}>
+                    <Heading size="xs" textTransform="uppercase">
+                      {item.title}
+                    </Heading>
+                    {item.bullet_points.map((pt) => (
+                      <Text pt="2" fontSize="sm" key={pt}>
+                        {pt}
+                      </Text>
+                    ))}
+                  </Box>
+                ))}
+              </Stack>
+            </CardBody>
           </Card>
           <Heading ml="20px" mt="40px">
-          <center> Collections</center>
+            Trending collections
           </Heading>
-         <Flex
+          <Flex
             direction="row"
             wrap="wrap"
             mt="20px"
             gap="5"
             justifyContent="space-evenly"
           >
-        {/*    {NFT_CONTRACTS.map((item) => (
+            {NFT_CONTRACTS.map((item) => (
               <Link
                 _hover={{ textDecoration: "none" }}
                 w={300}
@@ -51,7 +66,7 @@ export default function Home() {
                   {item.title}
                 </Text>
               </Link>
-            ))} */}
+            ))}
           </Flex>
         </Flex>
       </Box>
@@ -77,7 +92,14 @@ const _latestUpdates: Array<{ title: string; bullet_points: string[] }> = [
   {
     title: "Multiple collections supported",
     bullet_points: [
-      "The new template now supports multiple collections, you view your owned NFTs and your listings",
+      "The new template now supports multiple collections, you can view your owned NFTs and your listings",
+    ],
+  },
+  {
+    title: "Upcoming features",
+    bullet_points: [
+      "Select different currencies (ERC20) when creating listings",
+      "UI for English Auctions",
     ],
   },
   {

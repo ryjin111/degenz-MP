@@ -1,5 +1,5 @@
 import type { Chain } from "thirdweb";
-import { degenz,hamz } from "./chains";
+import { avalancheFuji, polygonAmoy, sepolia, degenz,hamz } from "./chains";
 
 type MarketplaceContract = {
   address: string;
@@ -16,6 +16,9 @@ export const MARKETPLACE_CONTRACTS: MarketplaceContract[] = [
     chain: degenz,
   },
 
-
+  {
+    address: "0x0ce3808C6208C5c04F943982Ce9E97393Ed3C5F4",
+    chain: hamz,
+  },
 
 ];

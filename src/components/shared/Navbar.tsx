@@ -1,6 +1,8 @@
 "use client";
 
 import { client } from "@/consts/client";
+import { useGetENSAvatar } from "@/hooks/useGetENSAvatar";
+import { useGetENSName } from "@/hooks/useGetENSName";
 import { Link } from "@chakra-ui/next-js";
 import {
   Box,
@@ -12,9 +14,12 @@ import {
   MenuItem,
   MenuList,
   Image,
+  useColorMode,
 } from "@chakra-ui/react";
 import { blo } from "blo";
+import { FaRegMoon } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
+import { IoSunny } from "react-icons/io5";
 import {
   ConnectButton,
   useActiveAccount,

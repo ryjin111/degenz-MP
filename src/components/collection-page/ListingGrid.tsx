@@ -8,7 +8,6 @@ import {
   useBreakpointValue,
   Text,
 } from "@chakra-ui/react";
-import { toEther } from "thirdweb";
 import { MediaRenderer } from "thirdweb/react";
 
 export function ListingGrid() {
@@ -35,11 +34,12 @@ export function ListingGrid() {
           _hover={{ textDecoration: "none" }}
         >
           <Flex direction="column">
-            <MediaRenderer client={client} src={item.asset.metadata.image} />
+            <MediaRenderer client={client} src={item.asset.metadata.image_data} />
             <Text>{item.asset?.metadata?.name ?? "Unknown item"}</Text>
             <Text>Price</Text>
             <Text>
-              {toEther(item.pricePerToken)} {item.currencyValuePerToken.symbol}
+              {item.currencyValuePerToken.displayValue}{" "}
+              {item.currencyValuePerToken.symbol}
             </Text>
           </Flex>
         </Box>

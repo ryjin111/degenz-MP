@@ -1,5 +1,5 @@
 import type { Chain } from "thirdweb";
-import { hamz, degenz } from "./chains";
+import { avalancheFuji, degenz, hamz, polygonAmoy } from "./chains";
 
 export type NftContract = {
   address: string;
@@ -28,6 +28,13 @@ export const NFT_CONTRACTS: NftContract[] = [
     type: "ERC721",
   },
 
-  
-  
+  {
+    address: "0xd1Ee96F8859Da046781cACa35EF0FF2A0307570C",
+    chain: hamz,
+    title: "Ham Punks by Apex777",
+    thumbnailUrl:
+      "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/e8e82d62-fb6d-4c87-ca58-c80ea9eddb00/original",
+    type: "ERC721",
+  },
+ 
 ];

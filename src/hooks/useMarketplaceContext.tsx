@@ -3,6 +3,11 @@
 import { client } from "@/consts/client";
 import { MARKETPLACE_CONTRACTS } from "@/consts/marketplace_contract";
 import { NFT_CONTRACTS } from "@/consts/nft_contracts";
+import { SUPPORTED_TOKENS, Token } from "@/consts/supported_tokens";
+import {
+  getSupplyInfo,
+  SupplyInfo,
+} from "@/extensions/getLargestCirculatingTokenId";
 import { Box, Spinner } from "@chakra-ui/react";
 import { createContext, type ReactNode, useContext } from "react";
 import { getContract, type ThirdwebContract } from "thirdweb";
@@ -41,6 +46,8 @@ type TMarketplaceContext = {
   refetchAllListings: Function;
   isRefetchingAllListings: boolean;
   listingsInSelectedCollection: DirectListing[];
+  supplyInfo: SupplyInfo | undefined;
+  supportedTokens: Token[];
 };
 
 const MarketplaceContext = createContext<TMarketplaceContext | undefined>(
@@ -144,12 +151,25 @@ export default function MarketplaceProvider({
     }
   );
 
+  const { data: supplyInfo, isLoading: isLoadingSupplyInfo } = useReadContract(
+    getSupplyInfo,
+    {
+      contract,
+    }
+  );
+
   const isLoading =
     isChecking1155 ||
     isChecking721 ||
     isLoadingAuctions ||
     isLoadingContractMetadata ||
-    isLoadingValidListings;
+    isLoadingValidListings ||
+    isLoadingSupplyInfo;
+
+  const supportedTokens: Token[] =
+    SUPPORTED_TOKENS.find(
+      (item) => item.chain.id === marketplaceContract.chain.id
+    )?.tokens || [];
 
   return (
     <MarketplaceContext.Provider
@@ -164,6 +184,8 @@ export default function MarketplaceProvider({
         refetchAllListings,
         isRefetchingAllListings,
         listingsInSelectedCollection,
+        supplyInfo,
+        supportedTokens,
       }}
     >
       {children}

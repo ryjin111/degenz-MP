@@ -1,9 +1,5 @@
 import { defineChain } from "thirdweb";
 
-/**
- * All chains should be exported from this file
- */
-
 export const degenz = defineChain({
 	id: 666666666,
 	nativeCurrency: {
@@ -28,8 +24,15 @@ export const degenz = defineChain({
 	  symbol: "ETH",
 	  decimals: 18,
 	},
+	
+	blockExplorers: [
+		{
+		  name: "DegenChain",
+		  url: "https://ham.calderaexplorer.xyz",
+		  apiUrl: "hhttps://ham.calderaexplorer.xyz/api/v2/",
+		},
+	  ],
    });
-
 export { avalancheFuji, sepolia, polygonAmoy } from "thirdweb/chains";
 
 /**

@@ -19,8 +19,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { toEther } from "thirdweb";
-import { getNFT as getERC1155 } from "thirdweb/extensions/erc1155";
+import { balanceOf, getNFT as getERC1155 } from "thirdweb/extensions/erc1155";
 import { getNFT as getERC721 } from "thirdweb/extensions/erc721";
 import {
   MediaRenderer,
@@ -68,6 +67,15 @@ export function Token(props: Props) {
     }
   );
 
+  const { data: ownedQuantity1155 } = useReadContract(balanceOf, {
+    contract: nftContract,
+    owner: account?.address!,
+    tokenId: tokenId,
+    queryOptions: {
+      enabled: !!account?.address && type === "ERC1155",
+    },
+  });
+
   const listings = (listingsInSelectedCollection || []).filter(
     (item) =>
       item.assetContractAddress.toLowerCase() ===
@@ -96,10 +104,10 @@ export function Token(props: Props) {
           <Flex direction="column" w={{ lg: "45vw", base: "90vw" }} gap="5">
             <MediaRenderer
               client={client}
-              src={nft?.metadata.image}
+              src={nft?.metadata.image_data}
               style={{ width: "max-content", height: "auto", aspectRatio: "1" }}
             />
-            <Accordion allowToggle allowMultiple defaultIndex={[0]}>
+            <Accordion allowMultiple defaultIndex={[0, 1, 2]}>
               {nft?.metadata.description && (
                 <AccordionItem>
                   <Text>
@@ -123,7 +131,6 @@ export function Token(props: Props) {
                 )}
 
               {nft && <NftDetails nft={nft} />}
-
             </Accordion>
           </Flex>
           <Box w={{ lg: "45vw", base: "90vw" }}>
@@ -141,20 +148,35 @@ export function Token(props: Props) {
             <Text># {nft?.id.toString()}</Text>
             <Heading>{nft?.metadata.name}</Heading>
             <br />
-            <Text>Current owner</Text>
-            <Flex direction="row">
-              <Heading>
-                {nft?.owner ? shortenAddress(nft.owner) : "N/A"}{" "}
-              </Heading>
-              {ownedByYou && <Text color="gray">(You)</Text>}
-            </Flex>
-            {account && nft && ownedByYou && (
-              <CreateListing tokenId={nft?.id} account={account} />
+            {type === "ERC1155" ? (
+              <>
+                {account && ownedQuantity1155 && (
+                  <>
+                    <Text>You own</Text>
+                    <Heading>{ownedQuantity1155.toString()}</Heading>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <Text>Current owner</Text>
+                <Flex direction="row">
+                  <Heading>
+                    {nft?.owner ? shortenAddress(nft.owner) : "N/A"}{" "}
+                  </Heading>
+                  {ownedByYou && <Text color="gray">(You)</Text>}
+                </Flex>
+              </>
             )}
+            {account &&
+              nft &&
+              (ownedByYou || (ownedQuantity1155 && ownedQuantity1155 > 0n)) && (
+                <CreateListing tokenId={nft?.id} account={account} />
+              )}
             <Accordion
               mt="30px"
               sx={{ container: {} }}
-              defaultIndex={[0]}
+              defaultIndex={[0, 1]}
               allowMultiple
             >
               <AccordionItem>
@@ -176,7 +198,7 @@ export function Token(props: Props) {
                         <Thead>
                           <Tr>
                             <Th>Price</Th>
-                            <Th px={1}>Qty</Th>
+                            {type === "ERC1155" && <Th px={1}>Qty</Th>}
                             <Th>Expiration</Th>
                             <Th px={1}>From</Th>
                             <Th>{""}</Th>
@@ -191,13 +213,15 @@ export function Token(props: Props) {
                               <Tr key={item.id.toString()}>
                                 <Td>
                                   <Text>
-                                    {toEther(item.pricePerToken)}{" "}
+                                    {item.currencyValuePerToken.displayValue}{" "}
                                     {item.currencyValuePerToken.symbol}
                                   </Text>
                                 </Td>
-                                <Td px={1}>
-                                  <Text>{item.quantity.toString()}</Text>
-                                </Td>
+                                {type === "ERC1155" && (
+                                  <Td px={1}>
+                                    <Text>{item.quantity.toString()}</Text>
+                                  </Td>
+                                )}
                                 <Td>
                                   <Text>
                                     {getExpiration(item.endTimeInSeconds)}
@@ -205,7 +229,10 @@ export function Token(props: Props) {
                                 </Td>
                                 <Td px={1}>
                                   <Text>
-                                    {shortenAddress(item.creatorAddress)}
+                                    {item.creatorAddress.toLowerCase() ===
+                                    account?.address.toLowerCase()
+                                      ? "You"
+                                      : shortenAddress(item.creatorAddress)}
                                   </Text>
                                 </Td>
                                 {account && (
