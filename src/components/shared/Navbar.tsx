@@ -117,7 +117,7 @@ function ToggleThemeButton() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Button height="56px" w="56px" onClick={toggleColorMode} mr="10px">
-      {colorMode === "light" ? <FaRegMoon /> : <IoSunny />}
+      {colorMode === "dark" ? <FaRegMoon /> : <IoSunny />}
     </Button>
   );
 }
