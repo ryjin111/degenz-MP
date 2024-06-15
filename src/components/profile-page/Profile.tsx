@@ -182,6 +182,7 @@ export function ProfileSection(props: Props) {
                             w={250}
                           >
                             <Flex direction="column">
+                            <MediaRenderer client={client} src={item.asset.metadata.image_data as string ?? ""} />
                               <MediaRenderer
                                 client={client}
                                 src={item.asset.metadata.image}

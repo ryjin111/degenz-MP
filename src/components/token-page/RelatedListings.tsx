@@ -56,6 +56,7 @@ export default function RelatedListings({
               minW={250}
             >
               <Flex direction="column">
+              <MediaRenderer client={client} src={item.asset.metadata.image_data as string ?? ""} />
                 <MediaRenderer
                   client={client}
                   src={item.asset.metadata.image}

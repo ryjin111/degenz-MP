@@ -102,11 +102,17 @@ export function Token(props: Props) {
           gap={{ lg: 20, base: 5 }}
         >
           <Flex direction="column" w={{ lg: "45vw", base: "90vw" }} gap="5">
+          <MediaRenderer
+              client={client}
+              src={nft?.metadata.imageimage_data as string ?? ""}
+              style={{ width: "max-content", height: "auto", aspectRatio: "1" }}
+            />
             <MediaRenderer
               client={client}
               src={nft?.metadata.image}
               style={{ width: "max-content", height: "auto", aspectRatio: "1" }}
             />
+          
             <Accordion allowMultiple defaultIndex={[0, 1, 2]}>
               {nft?.metadata.description && (
                 <AccordionItem>
