@@ -61,6 +61,7 @@ export function AllNftsGrid() {
     xl: Math.min(len, 5),
   });
 
+  
   console.log({ pages, currentPageIndex, length: pages.length });
   return (
     <>
@@ -77,7 +78,11 @@ export function AllNftsGrid() {
               _hover={{ textDecoration: "none" }}
             >
               <Flex direction="column">
-                <MediaRenderer client={client} src={item.metadata.image_data} />
+                
+                
+                <MediaRenderer client={client} src={item.metadata.image_data as string ?? ""} />
+                <MediaRenderer client={client} src={item.metadata.image}/>
+                
                 <Text>{item.metadata?.name ?? "Unknown item"}</Text>
               </Flex>
             </Box>

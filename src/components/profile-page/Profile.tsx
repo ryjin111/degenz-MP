@@ -184,7 +184,7 @@ export function ProfileSection(props: Props) {
                             <Flex direction="column">
                               <MediaRenderer
                                 client={client}
-                                src={item.asset.metadata.image_data}
+                                src={item.asset.metadata.image}
                               />
                               <Text mt="12px">
                                 {item.asset?.metadata?.name ?? "Unknown item"}

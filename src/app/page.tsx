@@ -23,28 +23,18 @@ export default function Home() {
           {/* Delete this <Card /> in your own app */}
           <Card border="1px" maxW="90vw" mx="auto">
             <CardHeader>
-              <Heading size="md">Marketplace Template v2</Heading>
+              <Heading size="md">You can check your Owned NFTs in profile</Heading>
+              </CardHeader>
+              <CardHeader>
+              <Heading size="md">DegenZ Buy and Sell will be available soon</Heading>
+              <Heading size="md">You can mint DegenZ here: 
+              <a href ="https://mintdegenz.cavern.store/"><u> DegenZ Mint Page </u></a></Heading>
             </CardHeader>
 
-            <CardBody>
-              <Stack divider={<StackDivider />} spacing="4">
-                {_latestUpdates.map((item) => (
-                  <Box key={item.title}>
-                    <Heading size="xs" textTransform="uppercase">
-                      {item.title}
-                    </Heading>
-                    {item.bullet_points.map((pt) => (
-                      <Text pt="2" fontSize="sm" key={pt}>
-                        {pt}
-                      </Text>
-                    ))}
-                  </Box>
-                ))}
-              </Stack>
-            </CardBody>
+       
           </Card>
           <Heading ml="20px" mt="40px">
-            Trending collections
+           <center> Available Collections</center>
           </Heading>
           <Flex
             direction="row"

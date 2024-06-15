@@ -56,10 +56,7 @@ export function NftDetails(props: Props) {
           <Text>Token Standard</Text>
           <Text>{type}</Text>
         </Flex>
-        <Flex direction="row" justifyContent="space-between" mb="1">
-          <Text>Chain</Text>
-          <Text>{nftContract.chain.name ?? "Unnamed chain"}</Text>
-        </Flex>
+       
       </AccordionPanel>
     </AccordionItem>
   );

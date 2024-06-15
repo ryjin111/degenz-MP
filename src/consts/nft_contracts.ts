@@ -27,6 +27,14 @@ export const NFT_CONTRACTS: NftContract[] = [
       "https://i.ibb.co/7rhj2ct/512.png",
     type: "ERC721",
   },
+  {
+    address: "0x8A53ED5189ca8D5cAc4149d75408cec047CD5b2e",
+    chain: degenz,
+    title: "Degen Punks by Apex777",
+    thumbnailUrl:
+      "https://dpunks.apexdeployer.xyz/metadata/2.png",
+    type: "ERC721",
+  },
 
   {
     address: "0xd1Ee96F8859Da046781cACa35EF0FF2A0307570C",
