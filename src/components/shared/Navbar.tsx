@@ -27,7 +27,7 @@ import {
   useDisconnect,
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
-import { SideMenu } from "./SideMenu";
+
 
 export function Navbar() {
   const account = useActiveAccount();
@@ -61,7 +61,7 @@ export function Navbar() {
             />
           )}
         </Box>
-        <SideMenu />
+        
       </Flex>
     </Box>
   );
