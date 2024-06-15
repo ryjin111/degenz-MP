@@ -26,7 +26,7 @@ export default function Home() {
               <Heading size="md">You can check your Owned NFTs in profile</Heading>
               </CardHeader>
               <CardHeader>
-              <Heading size="md">DegenZ Buy and Sell will be available soon</Heading>
+              <Heading size="md">DegenZ collection Buy and Sell will be available soon</Heading>
               <Heading size="md">You can mint DegenZ here: 
               <a href ="https://mintdegenz.cavern.store/"><u> DegenZ Mint Page </u></a></Heading>
             </CardHeader>
