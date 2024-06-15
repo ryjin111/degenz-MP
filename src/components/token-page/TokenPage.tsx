@@ -104,7 +104,7 @@ export function Token(props: Props) {
           <Flex direction="column" w={{ lg: "45vw", base: "90vw" }} gap="5">
           <MediaRenderer
               client={client}
-              src={nft?.metadata.imageimage_data as string ?? ""}
+              src={nft?.metadata.image_data as string ?? ""}
               style={{ width: "max-content", height: "auto", aspectRatio: "1" }}
             />
             <MediaRenderer
