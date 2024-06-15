@@ -20,6 +20,7 @@ export function OwnedItem(props: {
         w={250}
       >
         <Flex direction="column">
+        <MediaRenderer client={client} src={nft.metadata.image_data as string ?? ""} />
           <MediaRenderer client={client} src={nft.metadata.image} />
           <Text>{nft.metadata?.name ?? "Unknown item"}</Text>
         </Flex>

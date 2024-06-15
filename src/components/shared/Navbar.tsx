@@ -45,7 +45,6 @@ export function Navbar() {
             bgClip="text"
             fontWeight="extrabold"
           >
-            {/* Replace this with your own branding */}
             CAVERN
           </Heading>
         </Box>
